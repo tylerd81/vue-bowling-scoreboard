@@ -2,7 +2,7 @@
   <div id="app">
     <h1>Bowling Scoreboard</h1>
     <div>
-      <player-name player-name="Tyler"></player-name>
+      <player-name>Tyler</player-name>
       <bowling-frame
         v-for="n in 10"
         :class="{lastFrame: n == 10}"
@@ -11,18 +11,17 @@
       ></bowling-frame>
     </div>
 
-    <div
-      :class="{'current-player': true}"">
-      <player-name player-name="
-      Sarge"
-    >
+    <div :class="{'current-player': true}">
+      <player-name player-name>
+        Sarge
       </player-name>
       <bowling-frame
         v-for="n in 10"
         :class="{lastFrame: n == 10}"
         :rolls="rolls"
         :total-score="totalScore"
-      ></bowling-frame>
+      >
+      </bowling-frame>
     </div>
   </div>
 </template>
@@ -46,7 +45,13 @@ export default {
 </script>
 
 <style>
+html {
+  height: 100%;
+}
+body {
+  background: linear-gradient(to bottom right, blue 0%, lightblue 100%);
+  font-family: "Baloo Bhai";
+}
 .current-player {
-  background-color: lightcoral;
 }
 </style>

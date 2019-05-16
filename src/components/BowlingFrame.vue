@@ -28,10 +28,10 @@ export default {
 .frame {
   border: solid 1px #000;
   border-right: none;
-  border-bottom: none;
-  height: 3.5rem;
-  width: 3.5rem;
-  font-size: 1.5rem;
+  color: white;
+  height: 5rem;
+  width: 5rem;
+  font-size: 1.2rem;
   display: inline-block;
 }
 
@@ -46,13 +46,18 @@ export default {
 
 .second-roll {
   flex-basis: 50%;
-  border-bottom: solid 1px #000;
-  border-left: solid 1px #000;
+  /* border-bottom: solid 1px #000;
+  border-left: solid 1px #000; */
+  background-color: lightblue;
   text-align: center;
 }
 
 .total-score {
   text-align: center;
+  /* height: 2.25rem; */
+  font-size: 2rem;
+  padding: 0;
+  /* border: solid 1px red; */
 }
 
 .lastFrame {

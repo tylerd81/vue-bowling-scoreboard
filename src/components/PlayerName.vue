@@ -1,6 +1,6 @@
 <template>
   <div class="player-name">
-    <h2>{{playerName}}</h2>
+    <slot></slot>
   </div>
 </template>
 
@@ -13,9 +13,11 @@ export default {
 <style scoped>
 .player-name {
   display: inline-block;
-
   margin-top: 0;
   width: 10rem;
+
+  color: white;
+  font-size: 2rem;
 }
 
 .player-name h2 {
