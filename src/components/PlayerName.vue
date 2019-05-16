@@ -15,13 +15,9 @@ export default {
   display: inline-block;
   margin-top: 0;
   width: 10rem;
-
   color: white;
   font-size: 2rem;
-}
-
-.player-name h2 {
-  margin: 0;
+  text-align: center;
 }
 </style>
 

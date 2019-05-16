@@ -1,24 +1,23 @@
 <template>
   <div class="frame">
     <div class="rolls">
-      <div class="first-roll">{{getRoll(0)}}</div>
-      <div class="second-roll">{{getRoll(1)}}</div>
+      <div class="first-roll">{{getRoll(firstRoll)}}</div>
+      <div class="second-roll">{{getRoll(secondRoll)}}</div>
     </div>
 
-    <div class="total-score">{{totalScore}}</div>
+    <div class="frame-score">{{frameScore}}</div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["rolls", "totalScore"],
+  props: ["firstRoll", "secondRoll", "frameScore"],
   methods: {
-    getRoll(rollNum) {
-      if (rollNum < this.rolls.length) {
-        switch (this.rolls[rollNum].type) {
-          default:
-            return this.rolls[rollNum].roll;
-        }
+    getRoll(roll) {
+      if (roll.type === "spare") {
+        return "/";
+      } else {
+        return roll.pins;
       }
     }
   }
@@ -26,11 +25,10 @@ export default {
 </script>
 <style>
 .frame {
-  border: solid 1px #000;
+  border-left: solid 1px #353597;
   border-right: none;
   color: white;
   height: 5rem;
-  width: 5rem;
   font-size: 1.2rem;
   display: inline-block;
 }
@@ -46,18 +44,14 @@ export default {
 
 .second-roll {
   flex-basis: 50%;
-  /* border-bottom: solid 1px #000;
-  border-left: solid 1px #000; */
-  background-color: lightblue;
+  background-color: purple;
   text-align: center;
 }
 
-.total-score {
+.frame-score {
   text-align: center;
-  /* height: 2.25rem; */
   font-size: 2rem;
   padding: 0;
-  /* border: solid 1px red; */
 }
 
 .lastFrame {
