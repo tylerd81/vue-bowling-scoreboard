@@ -1,8 +1,21 @@
 <template>
   <div class="frame">
     <div class="rolls">
-      <div class="first-roll">{{getRoll(firstRoll)}}</div>
-      <div class="second-roll">{{getRoll(secondRoll)}}</div>
+      <template v-if="isStrike()">
+        <div class="first-roll">
+          X
+        </div>
+      </template>
+      <template v-else-if="isSpare()">
+        <div class="first-roll">
+          {{firstRoll}}
+        </div>
+        <div class="second-roll">\</div>
+      </template>
+      <template v-else>
+        <div class="first-roll">{{firstRoll}}</div>
+        <div class="second-roll">{{secondRoll}}</div>
+      </template>
     </div>
 
     <div class="frame-score">{{frameScore}}</div>
@@ -10,14 +23,40 @@
 </template>
 
 <script>
+import BowlingScoreBoard from "../utils/bowling";
+
 export default {
-  props: ["firstRoll", "secondRoll", "frameScore"],
+  props: {
+    firstRoll: {
+      type: Number,
+      required: false
+    },
+    secondRoll: {
+      type: Number,
+      required: false
+    },
+    frameType: {
+      type: String,
+      required: true
+    },
+    frameScore: {
+      type: Number,
+      required: false
+    }
+  },
   methods: {
-    getRoll(roll) {
-      if (roll.type === "spare") {
-        return "/";
+    isStrike() {
+      if (this.frameType === BowlingScoreBoard.FrameTypes.STRIKE) {
+        return true;
       } else {
-        return roll.pins;
+        return false;
+      }
+    },
+    isSpare() {
+      if (this.frameType === BowlingScoreBoard.FrameTypes.SPARE) {
+        return true;
+      } else {
+        return false;
       }
     }
   }

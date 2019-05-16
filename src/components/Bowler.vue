@@ -1,14 +1,17 @@
 <template>
-  <div class="bowler">
+  <div
+    class="bowler"
+    :class="{currentPlayer: isCurrentPlayer}"
+  >
     <player-name>{{playerName}}</player-name>
     <bowling-frame
-      v-for="n in 10"
-      :class="{lastFrame: n == 10}"
-      :first-roll="roll1"
-      :second-roll="roll2"
-      :frame-score="frameScore"
+      v-for="frame in scoreBoard.Frames"
+      :frame-type="frame.type"
+      :first-roll="frame.rolls[0]"
+      :second-roll="frame.rolls[1]"
+      :frame-score="frame.score"
     ></bowling-frame>
-    <total-score :score="totalScore"></total-score>
+    <total-score :score="scoreBoard.totalScore()"></total-score>
   </div>
 </template>
 
@@ -26,6 +29,14 @@ export default {
   props: {
     playerName: {
       type: String
+    },
+    isCurrentPlayer: {
+      type: Boolean,
+      required: false
+    },
+    scoreBoard: {
+      type: Object,
+      required: true
     }
   },
   data() {
@@ -53,5 +64,10 @@ export default {
   background-color: #00008b;
   margin-bottom: 1rem;
   box-shadow: 0 0 10px #000;
+}
+
+.currentPlayer {
+  background-color: lightseagreen;
+  box-shadow: none;
 }
 </style>

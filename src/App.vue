@@ -1,31 +1,11 @@
 <template>
   <div id="app">
     <score-board-header></score-board-header>
-    <bowler player-name="Tyler"></bowler>
-    <bowler player-name="Sarge"></bowler>
-    <bowler player-name="Ms. Brandi"></bowler>
-    <!-- <div>
-      <player-name>Tyler</player-name>
-      <bowling-frame
-        v-for="n in 10"
-        :class="{lastFrame: n == 10}"
-        :rolls="rolls"
-        :total-score="totalScore"
-      ></bowling-frame>
-    </div>
+    <bowler
+      player-name="Tyler"
+      :score-board="scoreBoard"
+    ></bowler>
 
-    <div :class="{'current-player': true}">
-      <player-name player-name>
-        Sarge
-      </player-name>
-      <bowling-frame
-        v-for="n in 10"
-        :class="{lastFrame: n == 10}"
-        :rolls="rolls"
-        :total-score="totalScore"
-      >
-      </bowling-frame>
-    </div> -->
   </div>
 </template>
 
@@ -34,6 +14,7 @@
 // import PlayerName from "./components/PlayerName.vue";
 import Bowler from "./components/Bowler";
 import ScoreBoardHeader from "./components/ScoreBoardHeader";
+import BowlingScoreBoard from "./utils/bowling";
 
 export default {
   components: {
@@ -43,8 +24,62 @@ export default {
   data() {
     return {
       rolls: [{ type: "open", roll: 5 }, { type: "open", roll: 2 }],
-      totalScore: 7
+      totalScore: 7,
+      currentPlayer: false,
+      scoreBoard: {}
     };
+  },
+  created() {
+    this.scoreBoard = new BowlingScoreBoard();
+    this.scoreBoard.addFrame(
+      { type: BowlingScoreBoard.FrameTypes.STRIKE, rolls: [10] },
+      0
+    );
+    this.scoreBoard.addFrame(
+      { type: BowlingScoreBoard.FrameTypes.SPARE, rolls: [7, 3] },
+      1
+    );
+    this.scoreBoard.addFrame(
+      { type: BowlingScoreBoard.FrameTypes.OPEN, rolls: [7, 2] },
+      2
+    );
+
+    this.scoreBoard.addFrame(
+      { type: BowlingScoreBoard.FrameTypes.SPARE, rolls: [9, 1] },
+      3
+    );
+
+    this.scoreBoard.addFrame(
+      { type: BowlingScoreBoard.FrameTypes.STRIKE, rolls: [10] },
+      4
+    );
+    this.scoreBoard.addFrame(
+      { type: BowlingScoreBoard.FrameTypes.STRIKE, rolls: [10] },
+      5
+    );
+    this.scoreBoard.addFrame(
+      { type: BowlingScoreBoard.FrameTypes.STRIKE, rolls: [10] },
+      6
+    );
+    this.scoreBoard.addFrame(
+      { type: BowlingScoreBoard.FrameTypes.OPEN, rolls: [2, 3] },
+      7
+    );
+
+    this.scoreBoard.addFrame(
+      { type: BowlingScoreBoard.FrameTypes.SPARE, rolls: [6, 4] },
+      8
+    );
+
+    this.scoreBoard.addFrame(
+      { type: BowlingScoreBoard.FrameTypes.SPARE, rolls: [7, 3] },
+      9
+    );
+
+    this.scoreBoard.addFrame(
+      { type: BowlingScoreBoard.FrameTypes.BONUS, rolls: [3] },
+      10
+    );
   }
 };
 </script>
