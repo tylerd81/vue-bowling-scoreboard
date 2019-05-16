@@ -1,28 +1,52 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Bowling Scoreboard</h1>
+    <div>
+      <player-name player-name="Tyler"></player-name>
+      <bowling-frame
+        v-for="n in 10"
+        :class="{lastFrame: n == 10}"
+        :rolls="rolls"
+        :total-score="totalScore"
+      ></bowling-frame>
+    </div>
+
+    <div
+      :class="{'current-player': true}"">
+      <player-name player-name="
+      Sarge"
+    >
+      </player-name>
+      <bowling-frame
+        v-for="n in 10"
+        :class="{lastFrame: n == 10}"
+        :rolls="rolls"
+        :total-score="totalScore"
+      ></bowling-frame>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import BowlingFrame from "./components/BowlingFrame.vue";
+import PlayerName from "./components/PlayerName.vue";
 
 export default {
-  name: 'app',
   components: {
-    HelloWorld
+    "bowling-frame": BowlingFrame,
+    "player-name": PlayerName
+  },
+  data() {
+    return {
+      rolls: [{ type: "open", roll: 5 }, { type: "open", roll: 2 }],
+      totalScore: 7
+    };
   }
-}
+};
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.current-player {
+  background-color: lightcoral;
 }
 </style>
