@@ -75,6 +75,8 @@ export default class BowlingScoreBoard {
         case BowlingScoreBoard.FrameTypes.BONUS:
           // don't add the bonus roll in
           currFrame.score = 0;
+          //add bonus to last frame?
+          this.frames[this.frames.length - 1].score += currFrame.rolls[0];
           break;
       }
 
@@ -86,32 +88,9 @@ export default class BowlingScoreBoard {
   }
 
   totalScore() {
-    let initialScore = 0;
-    // return this.frames.reduce((total, frame) => total + frame.score, initialScore);
     // the frames keep a running total, so the total score is the score of the last frame
     return this.frames[this.frames.length - 1].score;
   }
 
-  displayFrames() {
-    const displayFrame = function (frameData) {
-      console.log('---------------------------------------');
-      switch (frameData.type) {
-        case BowlingScoreBoard.FrameTypes.OPEN:
-          console.log("Open Frame");
-          break;
-        case BowlingScoreBoard.FrameTypes.SPARE:
-          console.log("Spare");
-          break;
-        case BowlingScoreBoard.FrameTypes.STRIKE:
-          console.log("Strike");
-      }
-
-      console.log(`Number of rolls: ${frameData.rolls.length}`);
-      console.log(`Score: ${frameData.score}`);
-      console.log('---------------------------------------\n');
-    }
-
-    this.frames.forEach(frame => displayFrame(frame));
-  }
 }
 

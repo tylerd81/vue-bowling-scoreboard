@@ -31,55 +31,65 @@ export default {
   },
   created() {
     this.scoreBoard = new BowlingScoreBoard();
-    this.scoreBoard.addFrame(
-      { type: BowlingScoreBoard.FrameTypes.STRIKE, rolls: [10] },
-      0
-    );
-    this.scoreBoard.addFrame(
-      { type: BowlingScoreBoard.FrameTypes.SPARE, rolls: [7, 3] },
-      1
-    );
-    this.scoreBoard.addFrame(
-      { type: BowlingScoreBoard.FrameTypes.OPEN, rolls: [7, 2] },
-      2
-    );
+    for (let i = 0; i < 9; i++) {
+      this.scoreBoard.addFrame(
+        { type: BowlingScoreBoard.FrameTypes.STRIKE, rolls: [10] },
+        i
+      );
+      this.scoreBoard.addFrame(
+        { type: BowlingScoreBoard.FrameTypes.STRIKE, rolls: [10, 10, 10] },
+        9
+      );
+    }
+    // this.scoreBoard.addFrame(
+    //   { type: BowlingScoreBoard.FrameTypes.STRIKE, rolls: [10] },
+    //   0
+    // );
+    // this.scoreBoard.addFrame(
+    //   { type: BowlingScoreBoard.FrameTypes.SPARE, rolls: [7, 3] },
+    //   1
+    // );
+    // this.scoreBoard.addFrame(
+    //   { type: BowlingScoreBoard.FrameTypes.OPEN, rolls: [7, 2] },
+    //   2
+    // );
 
-    this.scoreBoard.addFrame(
-      { type: BowlingScoreBoard.FrameTypes.SPARE, rolls: [9, 1] },
-      3
-    );
+    // this.scoreBoard.addFrame(
+    //   { type: BowlingScoreBoard.FrameTypes.SPARE, rolls: [9, 1] },
+    //   3
+    // );
 
-    this.scoreBoard.addFrame(
-      { type: BowlingScoreBoard.FrameTypes.STRIKE, rolls: [10] },
-      4
-    );
-    this.scoreBoard.addFrame(
-      { type: BowlingScoreBoard.FrameTypes.STRIKE, rolls: [10] },
-      5
-    );
-    this.scoreBoard.addFrame(
-      { type: BowlingScoreBoard.FrameTypes.STRIKE, rolls: [10] },
-      6
-    );
-    this.scoreBoard.addFrame(
-      { type: BowlingScoreBoard.FrameTypes.OPEN, rolls: [2, 3] },
-      7
-    );
+    // this.scoreBoard.addFrame(
+    //   { type: BowlingScoreBoard.FrameTypes.STRIKE, rolls: [10] },
+    //   4
+    // );
+    // this.scoreBoard.addFrame(
+    //   { type: BowlingScoreBoard.FrameTypes.STRIKE, rolls: [10] },
+    //   5
+    // );
+    // this.scoreBoard.addFrame(
+    //   { type: BowlingScoreBoard.FrameTypes.STRIKE, rolls: [10] },
+    //   6
+    // );
+    // this.scoreBoard.addFrame(
+    //   { type: BowlingScoreBoard.FrameTypes.OPEN, rolls: [2, 3] },
+    //   7
+    // );
 
-    this.scoreBoard.addFrame(
-      { type: BowlingScoreBoard.FrameTypes.SPARE, rolls: [6, 4] },
-      8
-    );
+    // this.scoreBoard.addFrame(
+    //   { type: BowlingScoreBoard.FrameTypes.SPARE, rolls: [6, 4] },
+    //   8
+    // );
 
-    this.scoreBoard.addFrame(
-      { type: BowlingScoreBoard.FrameTypes.SPARE, rolls: [7, 3] },
-      9
-    );
+    // this.scoreBoard.addFrame(
+    //   { type: BowlingScoreBoard.FrameTypes.SPARE, rolls: [7, 3] },
+    //   9
+    // );
 
-    this.scoreBoard.addFrame(
-      { type: BowlingScoreBoard.FrameTypes.BONUS, rolls: [3] },
-      10
-    );
+    // this.scoreBoard.addFrame(
+    //   { type: BowlingScoreBoard.FrameTypes.BONUS, rolls: [3] },
+    //   10
+    // );
   }
 };
 </script>
