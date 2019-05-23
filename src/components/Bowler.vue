@@ -5,13 +5,12 @@
   >
     <player-name>{{playerName}}</player-name>
     <bowling-frame
-      v-for="frame in scoreBoard.Frames"
-      :frame-type="frame.type"
-      :first-roll="frame.rolls[0]"
-      :second-roll="frame.rolls[1]"
-      :frame-score="frame.score"
+      v-for="frameScore in scoreBoard.frameScores"
+      :frame-type="frameScore.frameData.type"
+      :rolls="frameScore.frameData.rolls"
+      :frame-score="frameScore.score"
     ></bowling-frame>
-    <total-score :score="scoreBoard.totalScore()"></total-score>
+    <total-score :score="scoreBoard.totalScore"></total-score>
   </div>
 </template>
 

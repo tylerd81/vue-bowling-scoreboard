@@ -6,6 +6,14 @@
       :score-board="scoreBoard"
     ></bowler>
 
+    <input
+      type="text"
+      v-model.number="currentRoll"
+    >
+    <button
+      type="button"
+      @click="addRoll"
+    >Add</button>
   </div>
 </template>
 
@@ -14,7 +22,7 @@
 // import PlayerName from "./components/PlayerName.vue";
 import Bowler from "./components/Bowler";
 import ScoreBoardHeader from "./components/ScoreBoardHeader";
-import BowlingScoreBoard from "./utils/bowling";
+import BowlingScoreBoard from "./utils/bowling-simple.js";
 
 export default {
   components: {
@@ -23,73 +31,20 @@ export default {
   },
   data() {
     return {
-      rolls: [{ type: "open", roll: 5 }, { type: "open", roll: 2 }],
-      totalScore: 7,
-      currentPlayer: false,
-      scoreBoard: {}
+      scoreBoard: {},
+      rolls: [],
+      currentRoll: 0
     };
   },
-  created() {
-    this.scoreBoard = new BowlingScoreBoard();
-    for (let i = 0; i < 9; i++) {
-      this.scoreBoard.addFrame(
-        { type: BowlingScoreBoard.FrameTypes.STRIKE, rolls: [10] },
-        i
-      );
-      this.scoreBoard.addFrame(
-        { type: BowlingScoreBoard.FrameTypes.STRIKE, rolls: [10, 10, 10] },
-        9
-      );
+  // created() {
+  //   let rolls = [1, 3, 4, 6, 9, 0, 10, 1, 3];
+  //   let perfect = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 9];
+  // },
+  methods: {
+    addRoll(e) {
+      this.rolls.push(this.currentRoll);
+      this.scoreBoard = BowlingScoreBoard.calculateScore(this.rolls);
     }
-    // this.scoreBoard.addFrame(
-    //   { type: BowlingScoreBoard.FrameTypes.STRIKE, rolls: [10] },
-    //   0
-    // );
-    // this.scoreBoard.addFrame(
-    //   { type: BowlingScoreBoard.FrameTypes.SPARE, rolls: [7, 3] },
-    //   1
-    // );
-    // this.scoreBoard.addFrame(
-    //   { type: BowlingScoreBoard.FrameTypes.OPEN, rolls: [7, 2] },
-    //   2
-    // );
-
-    // this.scoreBoard.addFrame(
-    //   { type: BowlingScoreBoard.FrameTypes.SPARE, rolls: [9, 1] },
-    //   3
-    // );
-
-    // this.scoreBoard.addFrame(
-    //   { type: BowlingScoreBoard.FrameTypes.STRIKE, rolls: [10] },
-    //   4
-    // );
-    // this.scoreBoard.addFrame(
-    //   { type: BowlingScoreBoard.FrameTypes.STRIKE, rolls: [10] },
-    //   5
-    // );
-    // this.scoreBoard.addFrame(
-    //   { type: BowlingScoreBoard.FrameTypes.STRIKE, rolls: [10] },
-    //   6
-    // );
-    // this.scoreBoard.addFrame(
-    //   { type: BowlingScoreBoard.FrameTypes.OPEN, rolls: [2, 3] },
-    //   7
-    // );
-
-    // this.scoreBoard.addFrame(
-    //   { type: BowlingScoreBoard.FrameTypes.SPARE, rolls: [6, 4] },
-    //   8
-    // );
-
-    // this.scoreBoard.addFrame(
-    //   { type: BowlingScoreBoard.FrameTypes.SPARE, rolls: [7, 3] },
-    //   9
-    // );
-
-    // this.scoreBoard.addFrame(
-    //   { type: BowlingScoreBoard.FrameTypes.BONUS, rolls: [3] },
-    //   10
-    // );
   }
 };
 </script>

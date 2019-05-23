@@ -8,13 +8,21 @@
       </template>
       <template v-else-if="isSpare()">
         <div class="first-roll">
-          {{firstRoll}}
+          {{rolls[0]}}
         </div>
         <div class="second-roll">\</div>
       </template>
       <template v-else>
-        <div class="first-roll">{{firstRoll}}</div>
-        <div class="second-roll">{{secondRoll}}</div>
+        <div class="first-roll">{{rolls[0]}}</div>
+        <div
+          v-if="rolls.length === 2 && rolls[1] !== 0"
+          class="second-roll"
+        >{{rolls[1]}}</div>
+        <div
+          v-else
+          class="second-roll"
+        >-</div>
+
       </template>
     </div>
 
@@ -27,13 +35,9 @@ import BowlingScoreBoard from "../utils/bowling";
 
 export default {
   props: {
-    firstRoll: {
-      type: Number,
-      required: false
-    },
-    secondRoll: {
-      type: Number,
-      required: false
+    rolls: {
+      type: Array,
+      required: true
     },
     frameType: {
       type: String,
