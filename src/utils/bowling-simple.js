@@ -113,3 +113,8 @@ function calculateScore(pins) {
 
   return { frameScores, bonusRoll };
 }
+
+export default {
+  FrameTypes,
+  calculateScore,
+};
